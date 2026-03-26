@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carla Bruxelle — Journaliste</title>
+<html lang="fr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f9f7f4;
+    --gray: #888;
+    --light: #e8e5e0;
+    --accent: #c8a96e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--black);
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav { display: flex; gap: 2rem; }
+  nav a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 4rem 4rem;
+    border-bottom: 1px solid var(--light);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .hero-left {}
+
+  .hero-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-right {
+    padding-bottom: 0.5rem;
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.8;
+    max-width: 420px;
+  }
+
+  .hero-tags {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    border: 1px solid var(--black);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION */
+  section { padding: 4rem; border-bottom: 1px solid var(--light); }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 0.15em;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* ARTICLES */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0;
+  }
+
+  .article-card {
+    border: 1px solid var(--light);
+    padding: 1.8rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: background 0.2s;
+    border-collapse: collapse;
+  }
+
+  .article-card:hover { background: #f2ede5; }
+
+  .article-cat {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+  }
+
+  .article-pub {
+    font-size: 0.75rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+
+  /* VIDEOS */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .video-card {
+    background: var(--black);
+    aspect-ratio: 16/9;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.8rem;
+    color: #666;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .play-icon {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .play-icon::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 12px solid #666;
+    margin-left: 3px;
+  }
+
+  .video-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+    color: #aaa;
+    border-top: 1px solid #222;
+  }
+
+  /* PARCOURS */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--light);
+    align-items: baseline;
+  }
+
+  .timeline-date {
+    font-size: 0.78rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-sub {
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  /* CONTACT */
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--black);
+    border-bottom: 1px solid var(--light);
+    padding-bottom: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s;
+  }
+
+  .contact-link:hover { border-color: var(--black); }
+
+  .contact-link-label { color: var(--gray); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .arrow { font-size: 1.1rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--gray);
+    border-top: 1px solid var(--light);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    header, section, .hero, footer { padding: 1.5rem; }
+    .hero { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-section { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    nav { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Carla Bruxelle</div>
+  <nav>
+    <a href="#articles">Articles</a>
+    <a href="#videos">Vidéos</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Journaliste · Reporter d'Images</p>
+    <h1>Carla<br><em>Bruxelle</em></h1>
+  </div>
+  <div class="hero-right">
+    <p class="hero-bio">
+      Journaliste web et reporter d'images basée à Bruxelles. 
+      Rédaction, vidéo, réseaux sociaux et data — avec un regard formé 
+      à la presse régionale et nationale.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Reportage vidéo</span>
+      <span class="tag">Presse écrite</span>
+      <span class="tag">Data</span>
+      <span class="tag">Réseaux sociaux</span>
+      <span class="tag">La Voix du Nord</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Articles</h2>
+  </div>
+  <div class="articles-grid">
+    <a href="#" class="article-card">
+      <p class="article-cat">Société</p>
+      <p class="article-title">Titre de votre article — à remplacer</p>
+      <p class="article-pub">La Voix du Nord · 2024</p>
+    </a>
+    <a href="#" class="article-card">
+      <p class="article-cat">Éducation</p>
+      <p class="article-title">Titre de votre article — à remplacer</p>
+      <p class="article-pub">La Voix du Nord · 2024</p>
+    </a>
+    <a href="#" class="article-card">
+      <p class="article-cat">Culture</p>
+      <p class="article-title">Titre de votre article — à remplacer</p>
+      <p class="article-pub">Les Temps Qui Courent · 2023</p>
+    </a>
+    <a href="#" class="article-card">
+      <p class="article-cat">Investigation</p>
+      <p class="article-title">Titre de votre article — à remplacer</p>
+      <p class="article-pub">Les Temps Qui Courent · 2023</p>
+    </a>
+  </div>
+</section>
+
+<!-- VIDÉOS -->
+<section id="videos">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Vidéos & Reportages</h2>
+  </div>
+  <div class="videos-grid">
+    <div class="video-card">
+      <div class="video-placeholder">
+        <div class="play-icon"></div>
+        <span>À compléter</span>
+      </div>
+      <div class="video-label">Titre du reportage — 2024</div>
+    </div>
+    <div class="video-card">
+      <div class="video-placeholder">
+        <div class="play-icon"></div>
+        <span>À compléter</span>
+      </div>
+      <div class="video-label">Titre du reportage — 2024</div>
+    </div>
+    <div class="video-card">
+      <div class="video-placeholder">
+        <div class="play-icon"></div>
+        <span>À compléter</span>
+      </div>
+      <div class="video-label">Titre du reportage — 2023</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section id="parcours">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Parcours</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2024 – aujourd'hui</span>
+      <div>
+        <p class="timeline-title">Journaliste web — La Voix du Nord</p>
+        <p class="timeline-sub">Rédaction, vidéo, réseaux sociaux, data · Bruxelles</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2022 – 2024</span>
+      <div>
+        <p class="timeline-title">Journaliste web — Les Temps Qui Courent</p>
+        <p class="timeline-sub">Documentaires, interviews, projets culturels · Paris</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2021 – 2023</span>
+      <div>
+        <p class="timeline-title">Master Lettres postcoloniales — Université Bordeaux Montaigne</p>
+        <p class="timeline-sub">Littérature algérienne et francophone</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2019 – 2022</span>
+      <div>
+        <p class="timeline-title">Formation JRI — ISFJ Paris</p>
+        <p class="timeline-sub">Journaliste Reporter d'Images · Spécialisation web</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-section">
+    <div>
+      <p class="contact-big">Travaillons<br><em style="font-family:'Playfair Display',serif; font-style:italic; color: var(--accent);">ensemble.</em></p>
+    </div>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#b2c4ddc6c0d7f2d7dfd3dbde9cd1dddf" class="contact-link">
+        <div>
+          <p class="contact-link-label">Email</p>
+          <p><span class="__cf_email__" data-cfemail="84f2ebf0f6e1c4e1e9e5ede8aae7ebe9">[email&#160;protected]</span></p>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="https://linkedin.com/in/carlabruxelle" target="_blank" class="contact-link">
+        <div>
+          <p class="contact-link-label">LinkedIn</p>
+          <p>linkedin.com/in/carlabruxelle</p>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#" class="contact-link">
+        <div>
+          <p class="contact-link-label">CV</p>
+          <p>Télécharger mon CV</p>
+        </div>
+        <span class="arrow">↓</span>
+      </a>
+    </div>
+  </div>
+</secti
